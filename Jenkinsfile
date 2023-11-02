@@ -14,9 +14,9 @@ pipeline {
         
         }   
     }
-    stage("Configure ec2 with ansible")
-        steps {
-            script{
+        stage("Configure ec2 with ansible")
+            steps {
+              script{
                 echo "calling ansible playbook to configure ec2 instance"
                 def remote = [:]
                 remote.name = "ansible-server"
@@ -27,8 +27,8 @@ pipeline {
                     remote.identityFile = keyfile
                     sshCommand remote: remote, command: " ls -la "
 
-                }
-                  
+                     }
+
+                  }
             }
-        }
 }
