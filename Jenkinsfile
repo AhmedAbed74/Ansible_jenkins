@@ -14,7 +14,7 @@ pipeline {
         
         }   
     }
-        stage("Configure ec2 with ansible")
+        stage("Configure ec2 with ansible"){
             steps {
               script{
                 echo "calling ansible playbook to configure ec2 instance"
@@ -31,4 +31,5 @@ pipeline {
 
                   }
             }
+          }
 }
