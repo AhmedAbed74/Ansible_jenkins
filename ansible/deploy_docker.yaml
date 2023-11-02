@@ -1,0 +1,30 @@
+- name: Install Docker and docker compose on Ec2
+  hosts: all
+  become: yes
+  gather_facts: False
+  tasks:
+    - name: Install docker
+      vars: 
+        ansible_python_interpreter: /usr/bin/python
+      apt:
+        name: 
+          - docker
+          - python3
+        update_cache: yes
+        state: present
+    - name: install docker compose
+      get_url:
+        url: https://github.com/docker/compose/releases/download/1.27.4/docker-compose-Linux-{{lookup('pipe','uname -m')}}
+        dest: /usr/local/bin/docker-compose
+        mode: +x
+    - name: run docker
+      systemd:
+        name: docker
+        state: started
+    - name: install docker python module
+      pip:
+        name: 
+         - docker
+         - docker-compose
+
+ 
