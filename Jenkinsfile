@@ -13,7 +13,7 @@ pipeline {
             }
         
         }   
-    }
+    
         stage("Configure ec2 with ansible"){
             steps {
               script{
@@ -32,4 +32,5 @@ pipeline {
                   }
             }
           }
-}
+      }
+    }
