@@ -26,7 +26,7 @@ pipeline {
                 withCredentials([sshUserPrivateKey(credentialsId: 'ansible-server-key', keyFileVariable: 'keyfile', usernameVariable: 'ubuntu')]){
                     remote.user = ubuntu
                     remote.identityFile = keyfile
-                    sshCommand remote: remote, command: "ls -l"
+                    sshCommand remote: remote, command: "pwd"
 
                      }
 
