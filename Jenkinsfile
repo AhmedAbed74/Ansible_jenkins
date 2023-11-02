@@ -8,7 +8,8 @@ pipeline {
                     sshagent(['ansible-server-key']) {
                         sh "scp -o StrictHostKeyChecking=no ansible/* ubuntu@3.71.186.245:/home/ubuntu/ubuntu"
 
-                      
+                        withCredentials([sshUserPrivateKey(credentialsId: 'ubuntu_node', keyFileVariable: 'keyfile', usernameVariable: 'user')])
+                            sh "scp ${keyfile} ubuntu@3.71.186.245:/ubuntu/ssh-key.pem"
                     } 
                 }
             }
