@@ -16,7 +16,7 @@ pipeline {
     
         stage("Configure ec2 with ansible"){
             steps {
-              script{
+               script{
                 echo "calling ansible playbook to configure ec2 instance"
                 def remote = [:]
                 remote.name = "ansible-server"
@@ -24,14 +24,14 @@ pipeline {
                 remote.allowAnyHosts = true
 
                 withCredentials([sshUserPrivateKey(credentialsId: 'ansible-server-key', keyFileVariable: 'keyfile', usernameVariable: 'ubuntu')]){
-                    remote.user = ubuntu
+                    remote.user = 'ubuntu'
                     remote.identityFile = keyfile
                     sshCommand remote: remote, command: "pwd"
 
                      }
 
-                  }
+              }
             }
-          }
-      }
+        }
     }
+}
