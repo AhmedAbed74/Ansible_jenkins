@@ -12,7 +12,7 @@ pipeline {
                         sh "scp -o StrictHostKeyChecking=no ansible/* ubuntu@${ANSIBLE_SERVER}:/home/ubuntu/ubuntu"
 
                         withCredentials([sshUserPrivateKey(credentialsId: 'ubnuntu_node', keyFileVariable: 'keyfile', usernameVariable: 'ubuntu')]) {
-                            sh 'scp $keyfile ubuntu@$ANSIBLE_SERVER:/root/ssh-key.pem'
+                            sh 'scp $keyfile ubuntu@$ANSIBLE_SERVER:/ubuntu/ssh-key.pem'
                         }
                     }
                 }
