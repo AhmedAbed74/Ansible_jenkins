@@ -23,7 +23,7 @@ pipeline {
                     remote.hosts = "3.77.54.50"
                     remote.allowAnyHosts = true
 
-                withCredentials([sshUserPrivateKey(credentialsId: 'ubnuntu_node', keyFileVariable: 'keyfile', usernameVariable: 'ubuntu')]){
+                withCredentials([sshUserPrivateKey(credentialsId: 'ansible-server-key', keyFileVariable: 'keyfile', usernameVariable: 'ubuntu')]){
                     remote.user = 'ubuntu'
                     remote.identityFile = keyfile
                     sshCommand remote: remote, command: "pwd"
