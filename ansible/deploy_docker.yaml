@@ -4,8 +4,6 @@
   gather_facts: False
   tasks:
     - name: Install docker
-      vars: 
-        ansible_python_interpreter: /usr/bin/python
       apt:
         name: 
           - docker
