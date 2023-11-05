@@ -1,29 +1,30 @@
-- name: Install Docker and docker compose on Ec2
+---
+- name: Install Docker and Docker Compose on EC2
   hosts: all
   become: yes
   gather_facts: False
   tasks:
-    - name: Install docker
+    - name: Install Docker
       apt:
-        name: 
-          - docker
+        name:
+          - docker.io  
           - python3
         update_cache: yes
         state: present
-    - name: install docker compose
+
+    - name: Install Docker Compose
       get_url:
-        url: https://github.com/docker/compose/releases/download/1.27.4/docker-compose-Linux-{{lookup('pipe','uname -m')}}
+        url: https://github.com/docker/compose/releases/download/1.27.4/docker-compose-Linux-{{ lookup('pipe','uname -m') }}
         dest: /usr/local/bin/docker-compose
         mode: +x
-    - name: install docker python module
+
+    - name: Install Docker Python Module
       pip:
-        name: 
-         - docker
-         - docker-compose
-    - name: run docker
+        name:
+          - docker
+          - docker-compose
+
+    - name: Run Docker
       systemd:
         name: docker
         state: started
-    
-
- 
